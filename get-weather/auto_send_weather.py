@@ -4,6 +4,7 @@
 from wxpy import *
 import requests
 import pymysql
+from threading import Timer
 
 def get_city_code(city_name):
     db_parames = {
@@ -87,8 +88,8 @@ def get_weather(city_name,get_date_time=3):
     return weather_str
 
 def send_wx(city_name, who):
-    #bot = Bot(cache_path=True)
-    bot = Bot(console_qr=2, cache_path='botoo.pkl')
+    bot = Bot(cache_path=True)
+    #bot = Bot(console_qr=2, cache_path='botoo.pkl')
     my_friend = bot.friends().search(who)[0]
     msg = get_weather(city_name)
     try:
@@ -97,16 +98,17 @@ def send_wx(city_name, who):
         my_friend = bot.friends().search('fei')[0]
         my_friend.send(u"发送失败")
 
-if __name__ == '__main__':
+def auto_send():
     city_name = '朝阳区'
-    friend_list = ['陈家同']
+    friend_list = ['王漫']
+
     for who in friend_list:
         send_wx(city_name,who)
+    global timer
+    timer = Timer(86400,auto_send)
+    timer.start()
 
-
-
-
-
-
-
+if __name__ == '__main__':
+    timer = Timer(1,auto_send)
+    timer.start()
 
