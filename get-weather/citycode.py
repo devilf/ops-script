@@ -1,5 +1,3 @@
-import json
-
 citycode = [
   {
     "id": 1,
@@ -22792,13 +22790,15 @@ citycode = [
 ]
 
 cityinfo = {}
-# with open('city_for_code.json','w',encoding='utf-8') as f:
-#     for i in citycode:
-#         name = i["city_name"]
-#         code = i["city_code"]
-#         cityinfo[name] = code
-#     f.write(str(cityinfo))
+#将城市名和城市代码写入json文件中
+with open('city_for_code.json','w',encoding='utf-8') as f:
+    for i in citycode:
+        name = i["city_name"]
+        code = i["city_code"]
+        cityinfo[name] = code
+    f.write(str(cityinfo))
 
+#测试是否能读取
 with open('city_for_code.json','r+',encoding='utf-8') as file:
     data_dst = file.readlines()
     d = eval(data_dst[0])

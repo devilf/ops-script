@@ -31,5 +31,9 @@ with open('city_for_code.json','r+',encoding='utf-8') as f:
     #print(current_data.get('北京','Not Exists.'))
     for name, code in current_data.items():
         sql = """INSERT INTO city_code(city_name, city_code) VALUES ('%s', '%s')""" % (name, code)
-        cursor.execute(sql)
+        try:
+            cursor.execute(sql)
+        except:
+            conn.rollback()
     conn.commit()
+    conn.close()
