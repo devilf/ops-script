@@ -94,9 +94,9 @@ net.ipv4.icmp_echo_ignore_broadcasts = 1
 # 开启恶意icmp错误消息保护
 net.ipv4.icmp_ignore_bogus_error_responses = 1
 #关闭路由转发
-net.ipv4.ip_forward = 0
-net.ipv4.conf.all.send_redirects = 0
-net.ipv4.conf.default.send_redirects = 0
+net.ipv4.ip_forward = 1
+net.ipv4.conf.all.send_redirects = 1
+net.ipv4.conf.default.send_redirects = 1
 #开启反向路径过滤
 net.ipv4.conf.all.rp_filter = 1
 net.ipv4.conf.default.rp_filter = 1
